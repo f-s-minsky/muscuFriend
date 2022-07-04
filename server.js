@@ -1,19 +1,27 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import workoutRoutes from './routes/workouts.js';
+
+// Load .env file content (env variables) in process.env
+dotenv.config({ path: './config/config.env' });
 
 // express app
 const app = express();
 
-// simple logger middleware
+// middleware
+app.use(express.json());
+
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
 
-app.get('/', (req, res) => {
-  res.json({ msg: 'Welcome to my app : /' });
-});
+// Routes
+app.use('/api/workouts', workoutRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server running on ${PORT} my friend !`));
+app.listen(
+  PORT,
+  console.log(`Server running on ${process.env.PORT} my friend !`)
+);

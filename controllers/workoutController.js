@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 export const getWorkouts = async (req, res) => {
   try {
     // all workouts in descendant creation order.
-    const workouts = await Workout.find({}).sort({ createAt: -1 });
+    const workouts = await Workout.find({}).sort({ createdAt: -1 });
 
     res.status(200).json(workouts);
   } catch (err) {

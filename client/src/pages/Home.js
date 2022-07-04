@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import WorkoutDetails from '../components/WorkoutDetails';
+import WorkoutForm from '../components/WorkoutForm';
 
 const Home = () => {
   const [workouts, setworkouts] = useState(null);
@@ -7,7 +8,6 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       const response = await fetch('/api/workouts');
-      console.log('response', response);
 
       // parse json response to array object
       const responseArray = await response.json();
@@ -28,6 +28,7 @@ const Home = () => {
             <WorkoutDetails key={workout._id} workout={workout} />
           ))}
       </div>
+      <WorkoutForm />
     </div>
   );
 };

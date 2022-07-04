@@ -1,6 +1,8 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import workoutRoutes from './routes/workouts.js';
+import connectDB from './config/db.js';
 
 // Load .env file content (env variables) in process.env
 dotenv.config({ path: './config/config.env' });
@@ -18,6 +20,9 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/workouts', workoutRoutes);
+
+// DB connection
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 

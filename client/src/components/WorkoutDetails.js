@@ -11,14 +11,13 @@ const WorkoutDetails = ({ workout }) => {
       }
     );
     // data is the deleted doc
-    const data = await response.json();
-
-    console.log('data', data);
-
-    console.log('response.ok', response.ok);
+    const responseData = await response.json();
 
     if (response.ok) {
-      dispatch({ type: 'DELETE_WORKOUT', payload: data });
+      dispatch({
+        type: 'DELETE_WORKOUT',
+        payload: responseData,
+      });
     }
   };
 
